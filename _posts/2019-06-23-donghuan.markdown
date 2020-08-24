@@ -2,28 +2,30 @@
 layout: post
 title:  "机房动力环境监控系统"
 date:   2019-06-18 21:03:36 +0530
-categories: Qt UDP
+categories: ThinkPHP Qt 组态化
 ---
 机房动力环境监控系统是一套实现对数据机房中UPS，精密空调，配电柜，蓄电池，漏水传感器，烟雾传感器，温湿度传感器等设备集中监控的系统，保证了数据机房中工控机的运行环境。以MySQL 作为数据层，搭建合适且拓展性强的数据库系统，为实现产品化，软件中将设备协议封装入DLL以适应不同的设备，前端实现组态化设计，保证了用户可自定义机房场景。
+
+该产品已在大连西岗人民法院，武汉市房产大厦，杭州启正中学等多地数据机房投入使用。
 <br>
 
 {:refdef: style="text-align: center;"}
-![服务器端]({{ "./images/coal/server.png" | absolute_url }})
+![主页]({{ "./images/machineRoom/index.png" | absolute_url }})
 {:refdef}
 {:refdef: style="text-align: center;"}
-服务器端程序
+主界面
 {:refdef}
 {:refdef: style="text-align: center;"}
-![客户端]({{ "./images/coal/client.png" | absolute_url }})
+![供配电]({{ "./images/machineRoom/electric.png" | absolute_url }})
 {:refdef}
 {:refdef: style="text-align: center;"}
-客户端程序
+供配电
 {:refdef}
 {:refdef: style="text-align: center;"}
-![控制面板]({{ "./images/coal/control.png" | absolute_url }})
+![温湿度]({{ "./images/machineRoom/temp.png" | absolute_url }})
 {:refdef}
 {:refdef: style="text-align: center;"}
-虚拟控制面板
+温湿度传感器
 {:refdef}
 <br>
 本系统基于C++语言的QT软件开发，在保证稳定性、扩展性的前提下，以用户需求划分功能模块，原生开发，结构简单，缩短了开发时间，降低了维护难度。将后台数据库文件部署在本地服务器中，并且将其同步到云端服务器上，即可在手机端，电脑端，平板等联网设备上使用该系统，通过该系统可以远程监测煤矿开采现场的状态信息，也可以查询设备的历史数据信息包括设备信息、报警信息、当前数据等。
