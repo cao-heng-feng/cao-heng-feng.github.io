@@ -31,7 +31,9 @@ categories: Qt UDP
 
 通讯协议：Modbus CAN
 
-功能：设备数据监控，权限管理，报警管理，远程控制。
+主要技术：Serial Port, UDP, socket, opencv, ffmpeg, MD5, SURF, Modbus, CAN
+
+主要功能：设备数据监控，权限管理，报警管理，远程控制。
 
 
 
