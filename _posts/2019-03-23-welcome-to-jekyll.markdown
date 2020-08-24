@@ -12,7 +12,18 @@ categories: Qt UDP
 {:refdef: style="text-align: center;"}
 服务器端程序
 {:refdef}
+{:refdef: style="text-align: center;"}
+![客户端]({{ "./images/coal/client.png" | absolute_url }})
+{:refdef}
+{:refdef: style="text-align: center;"}
+客户端程序
+{:refdef}
+{:refdef: style="text-align: center;"}
+![控制面板]({{ "./images/coal/control.png" | absolute_url }})
+{:refdef}
+{:refdef: style="text-align: center;"}
+虚拟控制面板
+{:refdef}
 
-![客户端]({{ "./images/coal/client.png" | absolute_url }})  ![控制面板]({{ "./images/coal/control.png" | absolute_url }})<br>
------------------服务器端程序界面----------------------------------------------客户端程序界面-------------------------------------------------虚拟控制面板---------------
+
 
