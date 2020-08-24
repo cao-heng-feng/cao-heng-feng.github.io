@@ -8,7 +8,11 @@ categories: Qt UDP
 
 {:refdef: style="text-align: center;"}
 ![服务器端]({{ "./images/coal/server.png" | absolute_url }})
-{: refdef}
+{:refdef}
+{:refdef: style="text-align: center;"}
+服务器端程序
+{:refdef}
+
 ![客户端]({{ "./images/coal/client.png" | absolute_url }})  ![控制面板]({{ "./images/coal/control.png" | absolute_url }})<br>
 -----------------服务器端程序界面----------------------------------------------客户端程序界面-------------------------------------------------虚拟控制面板---------------
 
