@@ -1,11 +1,11 @@
 ---
 layout: post
 title:  "煤矿综采工作面智能一体化生产管理平台"
-date:   2019-03-23 21:03:36 +0530
+date:   2020-05-23 21:03:36 +0530
 categories: Qt UDP
 ---
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-![图片pic1]({{ "./images/index.png" | absolute_url }})
+本系统软件是一套集设备状态监控、设备信息展示、故障报警通知、通知消息、用户信息管理于一体的煤矿综合集控系统服务器端软件，适用于采煤行业，推动煤矿开采的智能化发展。该系统是在煤矿行业可以减少人员的使用，高级的自动化系统保证了矿井下人员的生命安全，实现了煤矿工作人员随时随地监控采集面的要求，加强了煤矿综合开采的网络化管理，实现综采工作面故障报警的功能，在一定程度上解决了过去煤矿开采现场离不开人的难题。
+![客户端]({{ "./images/index.png" | absolute_url }})
 
 ```javascript
 const Razorpay = require('razorpay');
