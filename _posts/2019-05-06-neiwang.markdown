@@ -1,25 +1,55 @@
 ---
 layout: post
-title:  "微模块云平台管理系统"
-date:   2019-01-15 21:03:36 +0530
-categories: ThinkPHP LayUi
+title:  "内网穿透方法记录"
+date:   2019-05-06 21:03:36 +0530
+categories: 内网穿透 电信
 ---
-微模块云平台管理系统，是一套用于管理微模块进出库，网点分布及所接机房设备数据管理的云平台系统。微模块是一套自行研发的小型数据主机，用于监控UPS，空调，电量仪等设备，已经实现产品化，“易云助手”云平台系统可用于管理分布在各地的微模块，实现上云，分布式管理，故障查询等。
+首先本地网络需要有一个固定的公网ip，公司用的电信网络，所以用电信。
+
+如果先连接了猫，再连接无线路由器，则需要二级映射(先将服务器的地址映射到路由器，再将路由器的地址映射到猫的公网上
+
+# 1.	将服务器地址映射到路由器
+
 <br>
 
 {:refdef: style="text-align: center;"}
-![数据]({{ "./images/web/data.png" | absolute_url }})
+![ip获取]({{ "./images/neiwang/1.png" | absolute_url }})
 {:refdef}
 {:refdef: style="text-align: center;"}
-数据界面
+ip获取
 {:refdef}
 {:refdef: style="text-align: center;"}
-![主界面]({{ "./images/web/index.png" | absolute_url }})
+![路由设置]({{ "./images/neiwang/2.png" | absolute_url }})
 {:refdef}
 {:refdef: style="text-align: center;"}
-主界面
+路由设置
 {:refdef}
 
+192.168.0.102:80----->192.168.1.4:12345
+浏览器输入192.168.1.4:12345即可访问192.168.0.102:80的数据库
+# 2.将路由器的地址映射到猫上
+电信：首先需要得到超级用户的账号密码，不是猫后面贴着的那个
+打开终端----->输入telnet 192.168.1.1----->账号root 密码Zte521(或root) (或直接打电话问电信) ----->输入 sendcmd 1 DB p UserInfo  
+可看到
+账号：telecomadmin
+密码：telecomadmin26012676
+
+{:refdef: style="text-align: center;"}
+![密码获取]({{ "./images/neiwang/3.png" | absolute_url }})
+{:refdef}
+{:refdef: style="text-align: center;"}
+user和psw获取
+{:refdef}
+登陆之后，来到对应界面，输入信息
+{:refdef: style="text-align: center;"}
+![映射公网]({{ "./images/neiwang/4.png" | absolute_url }})
+{:refdef}
+{:refdef: style="text-align: center;"}
+映射公网
+{:refdef}
+
+
+外网就可以通过220.184.124.48:60000访问服务器的内容，但是内网访问无效。
 
 
 
