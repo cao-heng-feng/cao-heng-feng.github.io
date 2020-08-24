@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "内网穿透方法记录"
+title:  "MySQL数据库主主热备份记录文档"
 date:   2020-03-05 21:03:36 +0530
 categories: MySQL 数据热备份 主主
 ---
