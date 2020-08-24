@@ -1,0 +1,27 @@
+---
+layout: post
+title:  "微模块云平台管理系统"
+date:   2019-01-15 21:03:36 +0530
+categories: ThinkPHP LayUi
+---
+微模块云平台管理系统，是一套用于管理微模块进出库，网点分布及所接机房设备数据管理的云平台系统。微模块是一套自行研发的小型数据主机，用于监控UPS，空调，电量仪等设备，已经实现产品化，“易云助手”云平台系统可用于管理分布在各地的微模块，实现上云，分布式管理，故障查询等。
+<br>
+
+{:refdef: style="text-align: center;"}
+![数据]({{ "./images/web/data.png" | absolute_url }})
+{:refdef}
+{:refdef: style="text-align: center;"}
+数据界面
+{:refdef}
+{:refdef: style="text-align: center;"}
+![主界面]({{ "./images/web/index.png" | absolute_url }})
+{:refdef}
+{:refdef: style="text-align: center;"}
+主界面
+{:refdef}
+
+
+
+
+
+
