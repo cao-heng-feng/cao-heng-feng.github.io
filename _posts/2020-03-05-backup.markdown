@@ -6,57 +6,130 @@ categories: MySQL 数据热备份 主主
 ---
 本机必须有一个固定的公网ip，就是百度出来的那个，而且要固定
 
-云端ip：47.99.34.243
+云端ip：47.99.123.***
 
-本机ip：112.14.221.212 
+本机ip：112.14.221.*** 
 
 映射ip：server.natappfree.cc:34580 （映射的必须是mysql端口 本次为3306）
-
+映射ip为natapp中免费试用的ip
 # 1.	两台机子都开放权限
-
-
-
+打开mysql.exe。（如果一闪而过，创建桌面快捷方式，右键属性目标，写入用户名和密码）
 
 <br>
-
 {:refdef: style="text-align: center;"}
-![ip获取]({{ "./images/neiwang/1.png" | absolute_url }})
+![打开mysql.exe]({{ "./images/backup/1.png" | absolute_url }})
 {:refdef}
 {:refdef: style="text-align: center;"}
-ip获取
-{:refdef}
-{:refdef: style="text-align: center;"}
-![路由设置]({{ "./images/neiwang/2.png" | absolute_url }})
-{:refdef}
-{:refdef: style="text-align: center;"}
-路由设置
+快捷方式打开mysql.exe
 {:refdef}
 
-192.168.0.102:80----->192.168.1.4:12345
-浏览器输入192.168.1.4:12345即可访问192.168.0.102:80的数据库
+创建用于连接的用户名及密码
 
-电信：首先需要得到超级用户的账号密码，不是猫后面贴着的那个
-打开终端----->输入telnet 192.168.1.1----->账号root 密码Zte521(或root) (或直接打电话问电信) ----->输入 sendcmd 1 DB p UserInfo  
-可看到
-账号：telecomadmin
-密码：telecomadmin26012676
+本机
 
+```
+mysql> GRANT ALL PRIVILEGES ON *.* TO ‘replicate’@'47.99.123.***' IDENTIFIED BY '123456';
+mysql> flush privileges;
+```
+
+云端
+
+```
+mysql> GRANT ALL PRIVILEGES ON *.* TO ‘replicate’@'112.14.221.***' IDENTIFIED BY '123456';
+mysql> flush privileges;
+
+```
+
+# 2.	测试能否连接
+两种方法：
+
+###### Cmd方式:
+
+创建好环境变量后输入
+```
+C:\Users\账户名> mysql -h47.99.123.*** -ureplicate -p123456
+```
+如果出现"Welcome to the MySQL monitor. "等字样，则表示能登录成功，说明可以对这两台服务器进行双机热备操作。两台都需测试
+
+###### Navicat方式(推荐):
+
+<br>
 {:refdef: style="text-align: center;"}
-![密码获取]({{ "./images/neiwang/3.png" | absolute_url }})
+![navicat连接]({{ "./images/backup/2.png" | absolute_url }})
 {:refdef}
 {:refdef: style="text-align: center;"}
-user和psw获取
-{:refdef}
-登陆之后，来到对应界面，输入信息
-{:refdef: style="text-align: center;"}
-![映射公网]({{ "./images/neiwang/4.png" | absolute_url }})
-{:refdef}
-{:refdef: style="text-align: center;"}
-映射公网
+navicat连接
 {:refdef}
 
+# 3.	修改配置文件my.ini
+在文件的末尾添加
 
-外网就可以通过220.184.124.48:60000访问服务器的内容，但是内网访问无效。
+本地
+```
+server-id=1
+log-bin=backuplog
+sync_binlog=1
+binlog_format=row
+auto_increment_increment = 2
+auto_increment_offset = 1 
+max_binlog_size=512m
+expire_logs_days=1
+binlog_do_db=tttt  #需要备份的数据库tttt
+replicate_do_db=tttt
+slave_skip_errors=all
+
+```
+
+云端
+```
+server-id=2
+log-bin=backuplog
+sync_binlog=1
+binlog_format=row
+auto_increment_increment = 2
+auto_increment_offset = 2 
+max_binlog_size=512m
+expire_logs_days=1
+binlog_do_db=tttt
+replicate_do_db=tttt
+slave_skip_errors=all
+
+```
+
+重启mysql服务；
+
+# 4.	分别查看服务器A和服务器B的主服务器状态
+```
+mysql> show master status\G;
+```
+记下file和pos
+
+# 5.	配置slave
+本地
+```
+mysql> stop slave;
+mysql> change master to master_host='47.99.123.***',master_user='replicate',master_password='123456',master_log_file='backuplog.000003',master_log_pos=2808;
+mysql> start slave;
+```
+云端
+```
+mysql> stop slave;
+mysql> change master to master_host='server.natappfree.cc', master_port=34580,master_user='replicate',master_password='123456',master_log_file='backuplog.000003',master_log_pos=2773;
+mysql> start slave;
+
+```
+分别查看服务器A和服务器B的从服务器状态
+```
+mysql> show slave status\G; 
+```
+查看Slave_IO_Running、Slave_SQL_Running两项值均为Yes，即表示设置从服务器成功。
+
+再重复设置一次就可以成为主主。
+
+
+
+
+
 
 
 
