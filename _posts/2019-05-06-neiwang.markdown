@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "内网穿透方法记录"
+title:  "方法记录--内网穿透"
 date:   2019-05-06 21:03:36 +0530
 categories: 内网穿透 电信
 ---
